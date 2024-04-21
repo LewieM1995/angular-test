@@ -1,28 +1,84 @@
+<ng-container *ngIf="loading; else content">
+    <app-loadingcomp></app-loadingcomp>
+</ng-container>
 
-<div *ngIf="product" class="product-details">
-    <app-button [textColor]="textColor" [color]="color" text="Go Back" (btnClick)="prevPage()" ></app-button>
-    <h1>{{ product.display_name }}</h1>
-    <div class="details">
-        <p><strong>Description:</strong> {{ product.description }}</p>
-        <p><strong>Brand:</strong> {{ product.brand }}</p>
-        <p><strong>Code:</strong> {{ product.code }}</p>
-        <p><strong>Full Name:</strong> {{ product.full_name }}</p>
-        <p><strong>Available From:</strong> {{ product.available_from }}</p>            <p><strong>Available To:</strong> {{ product.available_to || 'N/A' }}</p>
-        <p><strong>Is Business:</strong> {{ product.is_business }}</p>
-        <p><strong>Is Green:</strong> {{ product.is_green }}</p>
-        <p><strong>Is Prepay:</strong> {{ product.is_prepay }}</p>
-        <p><strong>Is Restricted:</strong> {{ product.is_restricted }}</p>
-        <p><strong>Is Tracker:</strong> {{ product.is_tracker }}</p>
-        <p><strong>Is Variable:</strong> {{ product.is_variable }}</p>
-        <p><strong>Dual Register Electricity Tariffs:</strong> {{ product.dual_register_electricity_tariffs | json }}</p>
-        <p><strong>Single Register Electricity Tariffs:</strong> {{ product.single_register_electricity_tariffs | json }}</p>
-        <p><strong>Single Register Gas Tariffs:</strong> {{ product.single_register_gas_tariffs | json }}</p>
-        <p><strong>Tariffs Active At:</strong> {{ product.tariffs_active_at }}</p>
-        <p><strong>Term:</strong> {{ product.term }}</p>
-        <p><strong>Sample Consumption:</strong> {{ product.sample_consumption | json }}</p>
-        <p><strong>Sample Quotes:</strong> {{ product.sample_quotes | json }}</p>
+
+<ng-template #content>
+    <div *ngIf="product" class="product-details">
+        <app-button [textColor]="textColor" [color]="color" text="Go Back" (btnClick)="prevPage()"></app-button>
+        <h1>{{ product.display_name }}</h1>
+        <div class="details">
+            <p><strong>Description:</strong> {{ product.description }}</p>
+            <p><strong>Brand:</strong> {{ product.brand }}</p>
+            <p><strong>Code:</strong> {{ product.code }}</p>
+            <p><strong>Full Name:</strong> {{ product.full_name }}</p>
+            <p><strong>Available From:</strong> {{ product.available_from }}</p>
+            <p><strong>Available To:</strong> {{ product.available_to || 'N/A' }}</p>
+            <p><strong>Is Business:</strong> {{ product.is_business }}</p>
+            <p><strong>Is Green:</strong> {{ product.is_green }}</p>
+            <p><strong>Is Prepay:</strong> {{ product.is_prepay }}</p>
+            <p><strong>Is Restricted:</strong> {{ product.is_restricted }}</p>
+            <p><strong>Is Tracker:</strong> {{ product.is_tracker }}</p>
+            <p><strong>Is Variable:</strong> {{ product.is_variable }}</p>
+            <span class="tariffs-section">
+                <strong>Dual Register Electricity Tariffs:</strong>
+                <ul class="tariff-list">
+                    <li *ngFor="let tariff of product.single_register_electricity_tariffs | keyvalue" class="tariff-item">
+                        <strong>{{ tariff.key }}:</strong>
+                        <ul>
+                            <li>
+                                <strong>Code:</strong>{{ tariff.value.direct_debit_monthly.code }}
+                            </li>
+                            <li>
+                                <strong>Standing Charge (Exc VAT):</strong> £{{ tariff.value.direct_debit_monthly.standing_charge_exc_vat }}
+                            </li>
+                            <li>
+                                <strong>Standard Unit Rate (Exc VAT):</strong> £{{ tariff.value.direct_debit_monthly.standard_unit_rate_exc_vat }}
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </span>
+            
+            <p><strong>Single Register Gas Tariffs:</strong> N/A</p>
+            <p><strong>Tariffs Active At:</strong> {{ product.tariffs_active_at }}</p>
+            <p><strong>Term:</strong> {{ product.term }}</p>
+            <span class="sample-consumption-section">
+                <strong>Annual Sample Consumption:</strong>
+                <ul>
+                    <li><strong>Electricity Single Rate</strong>:
+                        <ul>
+                            <li *ngFor="let item of product.sample_consumption.electricity_single_rate | keyvalue">
+                                {{ item.key }}: {{ item.value }}
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Electricity Dual Rate</strong>:
+                        <ul>
+                            <li *ngFor="let item of product.sample_consumption.electricity_dual_rate | keyvalue">
+                                {{ item.key }}: {{ item.value }}
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Dual Fuel Single Rate</strong>:
+                        <ul>
+                            <li *ngFor="let item of product.sample_consumption.dual_fuel_single_rate | keyvalue">
+                                {{ item.key }}: {{ item.value }}
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Dual Fuel Dual Rate</strong>:
+                        <ul>
+                            <li *ngFor="let item of product.sample_consumption.dual_fuel_dual_rate | keyvalue">
+                                {{ item.key }}: {{ item.value }}
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </span>
+        </div>
     </div>
-</div>
+</ng-template>
 
 
-  
+

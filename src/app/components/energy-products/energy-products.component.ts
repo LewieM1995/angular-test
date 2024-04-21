@@ -41,9 +41,4 @@ export class EnergyProductsComponent implements OnInit {
     }
   }
 
-  //checking render to exclude content
-  isProductDetailRouteActive(): boolean {
-    return this.router.url.includes('/products/:link');
-  }
-
 }

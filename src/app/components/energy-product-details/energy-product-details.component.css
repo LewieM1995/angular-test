@@ -23,3 +23,27 @@
     font-weight: bold;
     margin-right: 5px;
 }
+
+.tariff-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .tariff-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .tariff-item ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .tariff-item ul li {
+    margin-bottom: 5px;
+  }
+
+.sample-consumption-section {
+    margin-bottom: 20px;
+}
