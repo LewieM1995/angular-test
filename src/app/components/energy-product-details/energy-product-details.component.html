@@ -1,0 +1,28 @@
+
+<div *ngIf="product" class="product-details">
+    <app-button [textColor]="textColor" [color]="color" text="Go Back" (btnClick)="prevPage()" ></app-button>
+    <h1>{{ product.display_name }}</h1>
+    <div class="details">
+        <p><strong>Description:</strong> {{ product.description }}</p>
+        <p><strong>Brand:</strong> {{ product.brand }}</p>
+        <p><strong>Code:</strong> {{ product.code }}</p>
+        <p><strong>Full Name:</strong> {{ product.full_name }}</p>
+        <p><strong>Available From:</strong> {{ product.available_from }}</p>            <p><strong>Available To:</strong> {{ product.available_to || 'N/A' }}</p>
+        <p><strong>Is Business:</strong> {{ product.is_business }}</p>
+        <p><strong>Is Green:</strong> {{ product.is_green }}</p>
+        <p><strong>Is Prepay:</strong> {{ product.is_prepay }}</p>
+        <p><strong>Is Restricted:</strong> {{ product.is_restricted }}</p>
+        <p><strong>Is Tracker:</strong> {{ product.is_tracker }}</p>
+        <p><strong>Is Variable:</strong> {{ product.is_variable }}</p>
+        <p><strong>Dual Register Electricity Tariffs:</strong> {{ product.dual_register_electricity_tariffs | json }}</p>
+        <p><strong>Single Register Electricity Tariffs:</strong> {{ product.single_register_electricity_tariffs | json }}</p>
+        <p><strong>Single Register Gas Tariffs:</strong> {{ product.single_register_gas_tariffs | json }}</p>
+        <p><strong>Tariffs Active At:</strong> {{ product.tariffs_active_at }}</p>
+        <p><strong>Term:</strong> {{ product.term }}</p>
+        <p><strong>Sample Consumption:</strong> {{ product.sample_consumption | json }}</p>
+        <p><strong>Sample Quotes:</strong> {{ product.sample_quotes | json }}</p>
+    </div>
+</div>
+
+
+  

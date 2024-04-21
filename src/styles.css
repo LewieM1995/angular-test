@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+    margin: 0;
+}
+
+.main {
+    background-color: #f0e7f0;
+}
+
+.btn {
+    width: 100px;
+    height: 50px;
+    border: none;
+    margin-bottom: 10px;
+}

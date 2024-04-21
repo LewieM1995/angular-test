@@ -1,0 +1,14 @@
+
+
+  <div class="grid-container">
+    <div class="product-container" *ngFor="let product of products">
+      <div class="card" (click)="navigateProductDetails(product)">
+        <h3>{{ product.display_name }}</h3>
+        <p>{{ product.description }}</p>
+        <p>Brand: {{ product.brand }}</p>
+        <p>Code: {{ product.code }}</p>
+      </div>
+    </div>
+  </div>
+
+
